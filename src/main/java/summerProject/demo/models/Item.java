@@ -21,13 +21,10 @@ public class Item {
     @Column(name = "description", length = 255, nullable = false)
     private String description;
 
-    @ManyToMany
-    @JoinTable(name = "reward_log",
-            joinColumns = @JoinColumn(name = "item_name"),
-            inverseJoinColumns = @JoinColumn(name = "quest_name"),
-            uniqueConstraints = @UniqueConstraint(columnNames = {"item_name", "quest_name"}))
-    private List<Quest> quests = new ArrayList<>();
+    @OneToMany(mappedBy = "item")
+    private List<RewardLog> rewardLogs = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "items")
-    private List<Character> characters = new ArrayList<>();
+//    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item")
+    private List<InventoryLog> inventoryLogs = new ArrayList<>();
 }

@@ -13,6 +13,8 @@ models
     add cascade actions
     add getters and setters
     add constructors
+    add methods for add items on the lists
+
 
 repositories
     create custom methods more then two
@@ -20,6 +22,7 @@ repositories
 services
 
 dtos
+    DTO doesn't have business-logic, need add getters, setters and constructors
 
 controllers
     add controllers for all entity in models

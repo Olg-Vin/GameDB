@@ -22,9 +22,9 @@ public class Quest {
     @Column(name = "reward", length = 255, nullable = false)
     private String reward;
 
-    @ManyToMany(mappedBy = "quests")
-    private List<Item> items = new ArrayList<>();
+    @OneToMany(mappedBy = "quest")
+    private List<RewardLog> rewardLogs = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "quests")
-    private List<Character> characters = new ArrayList<>();
+    @OneToMany(mappedBy = "quest")
+    private List<QuestLog> questLogs = new ArrayList<>();
 }

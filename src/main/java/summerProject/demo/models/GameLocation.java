@@ -19,4 +19,54 @@ public class GameLocation {
     @OneToMany(mappedBy = "currentLocation")
     private List<Character> characters = new ArrayList<>();
 
+    public GameLocation() {
+    }
+
+    public GameLocation(String name, String legend, Integer maxNPC) {
+        this.name = name;
+        this.legend = legend;
+        this.maxNPC = maxNPC;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLegend() {
+        return legend;
+    }
+
+    public void setLegend(String legend) {
+        this.legend = legend;
+    }
+
+    public Integer getMaxNPC() {
+        return maxNPC;
+    }
+
+    public void setMaxNPC(Integer maxNPC) {
+        this.maxNPC = maxNPC;
+    }
+
+    public List<Character> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(List<Character> characters) {
+        this.characters = characters;
+    }
+
+    @Override
+    public String toString() {
+        return "GameLocation{" +
+                "name='" + name + '\'' +
+                ", legend='" + legend + '\'' +
+                ", maxNPC=" + maxNPC +
+                ", characters=" + characters +
+                '}';
+    }
 }

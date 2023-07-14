@@ -21,21 +21,81 @@ public class Character {
     @Column(name = "power_rate", nullable = false)
     private Integer powerRate;
 
-    @ManyToMany
-    @JoinTable(name = "quest_log",
-            joinColumns = @JoinColumn(name = "character_name"),
-            inverseJoinColumns = @JoinColumn(name = "quest_name"),
-            uniqueConstraints = @UniqueConstraint(columnNames = {"character_name", "quest_name"}))
-    private List<Quest> quests = new ArrayList<>();
+    @OneToMany(mappedBy = "character")
+    private List<QuestLog> questLogs = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(name = "inventory_log",
-            joinColumns = @JoinColumn(name = "character_name"),
-            inverseJoinColumns = @JoinColumn(name = "item_name"),
-            uniqueConstraints = @UniqueConstraint(columnNames = {"character_name", "item_name"}))
-    private List<Item> items = new ArrayList<>();
+    @OneToMany(mappedBy = "character")
+    private List<InventoryLog> items = new ArrayList<>();
 
-//    todo
+//    todo add methods for lists
 
 
+    public Character() {
+    }
+
+    public Character(String name, Integer characterClass, Integer level,
+                     GameLocation currentLocation, Integer powerRate) {
+//                     List<Quest> quests, List<Item> items
+        this.name = name;
+        this.characterClass = characterClass;
+        this.level = level;
+        this.currentLocation = currentLocation;
+        this.powerRate = powerRate;
+//        this.quests = quests;
+//        this.items = items;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    private void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getCharacterClass() {
+        return characterClass;
+    }
+
+    private void setCharacterClass(Integer characterClass) {
+        this.characterClass = characterClass;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    private void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public GameLocation getCurrentLocation() {
+        return currentLocation;
+    }
+
+    private void setCurrentLocation(GameLocation currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
+    public Integer getPowerRate() {
+        return powerRate;
+    }
+
+    private void setPowerRate(Integer powerRate) {
+        this.powerRate = powerRate;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Character{" +
+                "name='" + name + '\'' +
+                ", characterClass=" + characterClass +
+                ", level=" + level +
+                ", currentLocation=" + currentLocation +
+                ", powerRate=" + powerRate +
+//                ", quests=" + quests +
+                ", items=" + items +
+                '}';
+    }
 }
