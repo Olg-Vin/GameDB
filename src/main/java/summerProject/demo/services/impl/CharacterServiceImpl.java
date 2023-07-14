@@ -12,10 +12,11 @@ import summerProject.demo.repositories.GameLocationRepository;
 import summerProject.demo.services.CharacterService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class CharacterServiceImpl implements CharacterService {
+public class CharacterServiceImpl implements CharacterService<String> {
     @Autowired
     private CharacterRepository characterRepository;
     @Autowired
@@ -38,6 +39,11 @@ public class CharacterServiceImpl implements CharacterService {
 //        for (CharacterDTO c: characterDTOList){
 //            characterRepository.save(modelMapper.map(c, Character.class));
 //        }
+    }
+
+    @Override
+    public List<CharacterDTO> getAllCharacters() {
+        return characterRepository.findAll().stream().map((s) -> modelMapper.map(s, CharacterDTO.class)).toList();
     }
 
     @Override

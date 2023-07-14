@@ -1,4 +1,4 @@
 package summerProject.demo.controllers;
 
-public class GameLocaltionController {
+public class GameLocationController {
 }

@@ -1,4 +1,4 @@
 package summerProject.demo.services;
 
-public interface GameLocationService {
+public interface GameLocationService<ID> {
 }
