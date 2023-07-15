@@ -6,13 +6,16 @@ import jakarta.persistence.*;
 @Table(name = "reward_log")
 public class RewardLog {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer Id;
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
     private Quest quest;
-    @Id
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
     private Item item;
 
-    protected RewardLog() {
+    public RewardLog() {
     }
 
     public RewardLog(Quest quest, Item item) {

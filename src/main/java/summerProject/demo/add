@@ -1,35 +1,13 @@
 models
-    inventory_LOG:
-        Player_name + ItemName -> additive key
-        Amount
-    questLog:
-        playerName + questName -> additive key
-        status
-    rewardLog:
-        questName + ItemNAme -> additive key
-        amount
-    Location - Quest:
-        change 1x1 to 1xMany
     add cascade actions
-    add getters and setters
-    add constructors
-    add methods for add items on the lists
-
 
 repositories
     create custom methods more then two
-
+    в репозитории добавить кастомные запросы на прокидывание связей и получения инфы
 services
 
 dtos
-    DTO doesn't have business-logic, need add getters, setters and constructors
 
 controllers
     add controllers for all entity in models
 
-
-
-
-    SELECT conname, condeferrable, condeferred, confupdtype, confdeltype
-    FROM pg_constraint
-    WHERE contype = 'f' -- фильтр для внешних ключей

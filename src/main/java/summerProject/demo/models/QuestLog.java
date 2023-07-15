@@ -6,10 +6,13 @@ import jakarta.persistence.*;
 @Table(name = "quest_log")
 public class QuestLog {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
     private Character character;
-    @Id
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
     private Quest quest;
 
     public QuestLog() {

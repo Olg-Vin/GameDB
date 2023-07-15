@@ -15,7 +15,7 @@ public class CharacterController {
     private CharacterService characterService;
     @GetMapping("/")
     List<CharacterDTO> all(){
-        return characterService.getAllCharacters();
+        return characterService.getAll();
     }
 
 //    @PostMapping("/add")

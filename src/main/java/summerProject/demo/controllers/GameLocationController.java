@@ -18,7 +18,7 @@ public class GameLocationController {
     private GameLocationService gameLocationService;
     @GetMapping("/")
     List<GameLocationDTO> all(){
-        return gameLocationService.getAllGameLocation();
+        return gameLocationService.getAll();
     }
 }
 
