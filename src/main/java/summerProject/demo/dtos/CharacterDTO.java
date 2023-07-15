@@ -5,12 +5,12 @@ public class CharacterDTO {
     private Integer characterClass;
     private Integer level;
     private GameLocationDTO currentLocation;
-    private Integer powerRate;
+    private CharacteristicDTO powerRate;
 
     public CharacterDTO() {
     }
 
-    public CharacterDTO(String name, Integer characterClass, Integer level, GameLocationDTO currentLocation, Integer powerRate) {
+    public CharacterDTO(String name, Integer characterClass, Integer level, GameLocationDTO currentLocation, CharacteristicDTO powerRate) {
         this.name = name;
         this.characterClass = characterClass;
         this.level = level;
@@ -50,11 +50,11 @@ public class CharacterDTO {
         this.currentLocation = currentLocation;
     }
 
-    public Integer getPowerRate() {
+    public CharacteristicDTO getPowerRate() {
         return powerRate;
     }
 
-    private void setPowerRate(Integer powerRate) {
+    private void setPowerRate(CharacteristicDTO powerRate) {
         this.powerRate = powerRate;
     }
 

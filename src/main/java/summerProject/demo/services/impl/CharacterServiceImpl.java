@@ -34,6 +34,11 @@ public class CharacterServiceImpl implements CharacterService<String> {
     }
 
     @Override
+    public void saveCharacter(CharacterDTO characterDTO) {
+        characterRepository.save(modelMapper.map(characterDTO, Character.class));
+    }
+
+    @Override
     public void saveAllCharacter(List<CharacterDTO> characterDTOList) {
         characterRepository.saveAll(characterDTOList.stream().map((s) -> modelMapper.map(s, Character.class)).toList());
 //        for (CharacterDTO c: characterDTOList){

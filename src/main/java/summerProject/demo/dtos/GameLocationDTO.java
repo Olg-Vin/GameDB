@@ -37,4 +37,13 @@ public class GameLocationDTO {
     public void setMaxNPC(Integer maxNPC) {
         this.maxNPC = maxNPC;
     }
+
+    @Override
+    public String toString() {
+        return "GameLocationDTO{" +
+                "name='" + name + '\'' +
+                ", legend='" + legend + '\'' +
+                ", maxNPC=" + maxNPC +
+                '}';
+    }
 }

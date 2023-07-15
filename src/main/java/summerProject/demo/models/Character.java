@@ -2,9 +2,6 @@ package summerProject.demo.models;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name = "character")
 public class Character {
@@ -18,31 +15,20 @@ public class Character {
     @ManyToOne
     @JoinColumn
     private GameLocation currentLocation;
-    @Column(name = "power_rate", nullable = false)
-    private Integer powerRate;
+    @OneToOne
+    @JoinColumn
+    private Characteristic powerRate;
 
-    @OneToMany(mappedBy = "character")
-    private List<QuestLog> questLogs = new ArrayList<>();
-
-    @OneToMany(mappedBy = "character")
-    private List<InventoryLog> items = new ArrayList<>();
-
-//    todo add methods for lists
-
-
-    public Character() {
+    protected Character() {
     }
 
     public Character(String name, Integer characterClass, Integer level,
-                     GameLocation currentLocation, Integer powerRate) {
-//                     List<Quest> quests, List<Item> items
+                     GameLocation currentLocation, Characteristic powerRate) {
         this.name = name;
         this.characterClass = characterClass;
         this.level = level;
         this.currentLocation = currentLocation;
         this.powerRate = powerRate;
-//        this.quests = quests;
-//        this.items = items;
     }
 
     public String getName() {
@@ -77,11 +63,11 @@ public class Character {
         this.currentLocation = currentLocation;
     }
 
-    public Integer getPowerRate() {
+    public Characteristic getPowerRate() {
         return powerRate;
     }
 
-    private void setPowerRate(Integer powerRate) {
+    private void setPowerRate(Characteristic powerRate) {
         this.powerRate = powerRate;
     }
 
@@ -94,8 +80,6 @@ public class Character {
                 ", level=" + level +
                 ", currentLocation=" + currentLocation +
                 ", powerRate=" + powerRate +
-//                ", quests=" + quests +
-                ", items=" + items +
                 '}';
     }
 }

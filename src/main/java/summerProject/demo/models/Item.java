@@ -2,29 +2,69 @@ package summerProject.demo.models;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name = "item")
 public class Item {
     @Id
     @Column(name = "name", length = 255, nullable = false, unique = true)
     private String name;
-
     @OneToOne
-    @JoinColumn
+    @JoinColumn(name = "properties")
     private Characteristic properties;
-
     @Column(name = "type", nullable = false)
     private Integer type;
     @Column(name = "description", length = 255, nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "item")
-    private List<RewardLog> rewardLogs = new ArrayList<>();
+    protected Item() {
+    }
 
-//    @OneToMany(mappedBy = "item")
-    @OneToMany(mappedBy = "item")
-    private List<InventoryLog> inventoryLogs = new ArrayList<>();
+    public Item(String name, Characteristic properties, Integer type, String description) {
+        this.name = name;
+        this.properties = properties;
+        this.type = type;
+        this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Characteristic getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Characteristic properties) {
+        this.properties = properties;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", properties=" + properties +
+                ", type=" + type +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

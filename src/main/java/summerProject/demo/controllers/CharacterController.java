@@ -1,9 +1,7 @@
 package summerProject.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import summerProject.demo.dtos.CharacterDTO;
 import summerProject.demo.models.Character;
 import summerProject.demo.services.CharacterService;
@@ -19,4 +17,10 @@ public class CharacterController {
     List<CharacterDTO> all(){
         return characterService.getAllCharacters();
     }
+
+//    @PostMapping("/add")
+//
+//    @PostMapping("/update")
+//
+//    @DeleteMapping("/delete")
 }

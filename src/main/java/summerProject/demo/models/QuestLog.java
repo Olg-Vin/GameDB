@@ -11,4 +11,36 @@ public class QuestLog {
     @Id
     @ManyToOne(cascade = CascadeType.ALL)
     private Quest quest;
+
+    public QuestLog() {
+    }
+
+    public QuestLog(Character character, Quest quest) {
+        this.character = character;
+        this.quest = quest;
+    }
+
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
+    }
+
+    public Quest getQuest() {
+        return quest;
+    }
+
+    public void setQuest(Quest quest) {
+        this.quest = quest;
+    }
+
+    @Override
+    public String toString() {
+        return "QuestLog{" +
+                "character=" + character +
+                ", quest=" + quest +
+                '}';
+    }
 }
