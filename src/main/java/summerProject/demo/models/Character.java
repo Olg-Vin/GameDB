@@ -13,6 +13,7 @@ public class Character {
     @Column(name = "level", nullable = false)
     private Integer level;
     @ManyToOne
+//            (fetch = FetchType.LAZY)
     @JoinColumn
     private GameLocation currentLocation;
     @OneToOne
