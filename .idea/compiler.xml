@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="gameDB" target="16" />
+      <module name="gameDB" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
