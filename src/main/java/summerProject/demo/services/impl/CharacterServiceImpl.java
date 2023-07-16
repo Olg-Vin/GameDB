@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import summerProject.demo.dtos.CharacterDTO;
 import summerProject.demo.dtos.CharacteristicDTO;
+import summerProject.demo.exceptions.ResourceNotFoundException;
 import summerProject.demo.models.Character;
 import summerProject.demo.models.Characteristic;
 import summerProject.demo.models.GameLocation;
@@ -35,20 +36,17 @@ public class CharacterServiceImpl implements CharacterService<String> {
     @Override
     public CharacterDTO saveAndGet(CharacterDTO characterDTO) {
         Character c = modelMapper.map(characterDTO, Character.class);
-        Optional<GameLocation> g = gameLocationRepository.findById("yandex");
-        System.out.println("!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2");
-//        System.out.println(modelMapper.map(g, GameLocation.class));
+        GameLocation g = gameLocationRepository.findById("yandex").orElseThrow();
         c.setCurrentLocation(modelMapper.map(g, GameLocation.class));
         c.setPowerRate(getDefCharacteristic());
-//        System.out.println(g);
         return modelMapper.map(characterRepository.save(c), CharacterDTO.class);
-//        return null;
     }
 
 
     @Override
-    public CharacterDTO get(String s) {
-        return modelMapper.map(characterRepository.findById(s), CharacterDTO.class);
+    public Optional<CharacterDTO> get(String s) {
+        return Optional.ofNullable(modelMapper.map(characterRepository.findById(s), CharacterDTO.class));
+//        .orElseThrow(() -> new ResourceNotFoundException("Character with id " + s + " not found"))
     }
 
     @Override

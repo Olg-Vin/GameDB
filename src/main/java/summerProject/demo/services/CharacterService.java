@@ -4,13 +4,14 @@ import summerProject.demo.dtos.CharacterDTO;
 import summerProject.demo.models.Characteristic;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CharacterService<ID> {
     void save(CharacterDTO characterDTO);
     CharacterDTO saveAndGet(CharacterDTO characterDTO);//    for foreign key
 //    void saveAndGet(CharacterDTO characterDTO);
 
-    CharacterDTO get(ID id);
+    Optional<CharacterDTO> get(ID id);
     List<CharacterDTO> getAll();
 
     void update(CharacterDTO characterDTO);

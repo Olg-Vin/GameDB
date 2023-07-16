@@ -38,27 +38,16 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         GameLocationDTO gameLocationDTO = new GameLocationDTO("yandex", "legend", 2);
         gameLocationService.save(gameLocationDTO);
 
-        CharacteristicDTO characteristicDTO = new CharacteristicDTO(0,2,3,4,5,6,7);
-        characteristicDTO = characteristicService.saveAndGet(characteristicDTO);
-
-//        List<CharacteristicDTO> characteristicDTOList = new ArrayList<>();
-//        for (int i = 0; i < 5; i++){
-//
-//        }
-
-
         for (int i = 0; i < characterNames.length; i++){
-            gameLocationService.save(new GameLocationDTO(locationNames[i], "", 1));
+            gameLocationService.save(new GameLocationDTO(locationNames[i], "never die", 1));
             questService.save(new QuestDTO(questNames[i], "*optional*",
                     gameLocationDTO, gameLocationDTO, "fox"));
-
+            itemService.save(new ItemDTO(itemNames[i],
+                    characteristicService.saveAndGet(new CharacteristicDTO(0,1,2,3,4,5,6)),
+                    2, "hyi"));
             characterService.saveAndGet(new CharacterDTO(characterNames[i], 1, 1
                     ));
         }
-//        in work
-//        itemService.save(new ItemDTO(itemNames[1], new CharacteristicDTO(0,1,2,3,4,5,6), 2, "hyi"));
-
-
     }
     private void printData() throws Exception{
         List<CharacterDTO> characterDTOList = characterService.getAll();

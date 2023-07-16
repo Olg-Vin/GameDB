@@ -1,6 +1,7 @@
 package summerProject.demo.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "character")
@@ -13,11 +14,12 @@ public class Character {
     @Column(name = "level", nullable = false)
     private Integer level;
     @ManyToOne
-//            (fetch = FetchType.LAZY)
+            (fetch = FetchType.LAZY)
     @JoinColumn
     private GameLocation currentLocation = null;
     @OneToOne
     @JoinColumn
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Characteristic powerRate = null;
 
     protected Character() {

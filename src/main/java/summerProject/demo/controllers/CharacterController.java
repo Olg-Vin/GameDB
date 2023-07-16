@@ -3,20 +3,21 @@ package summerProject.demo.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import summerProject.demo.dtos.CharacterDTO;
+import summerProject.demo.exceptions.AppError;
 import summerProject.demo.services.CharacterService;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.HashMap;
 import java.util.List;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
+import java.util.Map;
+import java.util.Optional;
 
 
 @RestController
@@ -29,14 +30,20 @@ public class CharacterController {
     List<CharacterDTO> getAll() {
         return characterService.getAll();
     }
-
+//    todo
     @GetMapping("/{id}")
-    CharacterDTO getOne(@PathVariable String id) {
-        return characterService.get(id);
+    ResponseEntity<?> getOne(@PathVariable String id) throws Throwable {
+       Optional<CharacterDTO> characterDTO = characterService.get(id);
+        if (characterDTO.isEmpty()) {
+            return new ResponseEntity<>(new AppError(HttpStatus.NOT_FOUND.value(),
+                    "Product with id " + id + " not found"), HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(characterDTO);
     }
 
     @PostMapping("/add")
     CharacterDTO newCharacter(@RequestBody CharacterDTO newCharacterDTO) {
+        System.out.println(newCharacterDTO);
         return characterService.saveAndGet(newCharacterDTO);
     }
 
@@ -45,10 +52,6 @@ public class CharacterController {
         return characterService.saveAndGet(newCharacterDTO);
     }
 
-    //    @DeleteMapping("/delete/{id}")
-//    void deleteCharacter(@PathVariable String id) {
-//        characterService.delete(id);
-//    }
     @DeleteMapping("/delete")
     void deleteCharacter(@RequestBody String json) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -64,6 +67,6 @@ public class CharacterController {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-
     }
+//    todo custom
 }
