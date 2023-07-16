@@ -1,12 +1,8 @@
 package summerProject.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import summerProject.demo.dtos.CharacterDTO;
+import org.springframework.web.bind.annotation.*;
 import summerProject.demo.dtos.GameLocationDTO;
-import summerProject.demo.services.CharacterService;
 import summerProject.demo.services.GameLocationService;
 
 import java.util.List;
@@ -19,6 +15,24 @@ public class GameLocationController {
     @GetMapping("/")
     List<GameLocationDTO> all(){
         return gameLocationService.getAll();
+    }
+    @GetMapping("/{id}")
+    GameLocationDTO getOne(@PathVariable String id){
+        return gameLocationService.get(id);
+    }
+
+    @PostMapping("/add")
+    GameLocationDTO newLocation(@RequestBody GameLocationDTO newDTO) {
+        return gameLocationService.saveAndGet(newDTO);
+    }
+
+    @PostMapping("/update")
+    GameLocationDTO updateLocation(@RequestBody GameLocationDTO newDTO) {
+        return gameLocationService.saveAndGet(newDTO);
+    }
+    @DeleteMapping("/delete/{id}")
+    void deleteLocation(@PathVariable String id) {
+        gameLocationService.delete(id);
     }
 }
 

@@ -19,6 +19,7 @@ import org.springframework.web.filter.CorsFilter;
 public class CharacterController {
     @Autowired
     private CharacterService characterService;
+
     @GetMapping("/")
     List<CharacterDTO> getAll(){
         return characterService.getAll();
