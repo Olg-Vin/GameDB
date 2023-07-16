@@ -8,21 +8,21 @@ public class Characteristic {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
 //    todo not null attribute
-    private Integer id;
+    private Integer id = 0;
     @Column(name = "strength")
-    private Integer strength;
+    private Integer strength = 50;
     @Column(name = "health")
-    private Integer health;
+    private Integer health = 150;
     @Column(name = "intelligence")
-    private Integer intelligence;
+    private Integer intelligence = 50;
     @Column(name = "dexterity")
-    private Integer dexterity;
+    private Integer dexterity = 50;
     @Column(name = "charisma")
-    private Integer charisma;
+    private Integer charisma =50;
     @Column(name = "luck")
-    private Integer luck;
+    private Integer luck = 50;
 
-    protected Characteristic() {
+    public Characteristic() {
     }
 
     public Characteristic(Integer id, Integer strength, Integer health, Integer intelligence, Integer dexterity, Integer charisma, Integer luck) {

@@ -12,10 +12,12 @@ import java.util.List;
 public class ItemController {
     @Autowired
     private ItemService itemService;
+
     @GetMapping("/")
     List<ItemDTO> all(){
         return itemService.getAll();
     }
+
     @GetMapping("/{id}")
     ItemDTO getOne(@PathVariable String id){
         return itemService.get(id);

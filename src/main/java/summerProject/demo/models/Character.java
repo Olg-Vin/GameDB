@@ -15,10 +15,10 @@ public class Character {
     @ManyToOne
 //            (fetch = FetchType.LAZY)
     @JoinColumn
-    private GameLocation currentLocation;
+    private GameLocation currentLocation = null;
     @OneToOne
     @JoinColumn
-    private Characteristic powerRate;
+    private Characteristic powerRate = null;
 
     protected Character() {
     }
@@ -31,6 +31,7 @@ public class Character {
         this.currentLocation = currentLocation;
         this.powerRate = powerRate;
     }
+
 
     public String getName() {
         return name;
@@ -60,7 +61,7 @@ public class Character {
         return currentLocation;
     }
 
-    private void setCurrentLocation(GameLocation currentLocation) {
+    public void setCurrentLocation(GameLocation currentLocation) {
         this.currentLocation = currentLocation;
     }
 
@@ -68,7 +69,7 @@ public class Character {
         return powerRate;
     }
 
-    private void setPowerRate(Characteristic powerRate) {
+    public void setPowerRate(Characteristic powerRate) {
         this.powerRate = powerRate;
     }
 

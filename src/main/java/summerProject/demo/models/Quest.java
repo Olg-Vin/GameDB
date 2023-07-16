@@ -10,10 +10,10 @@ public class Quest {
     private String name;
     @Column(name = "content", length = 512, nullable = false)
     private String content;
-    @OneToOne
+    @ManyToOne
     @JoinColumn
     private GameLocation questPlace;
-    @OneToOne
+    @ManyToOne
     @JoinColumn
     private GameLocation returnPlace;
     @Column(name = "reward", length = 255, nullable = false)

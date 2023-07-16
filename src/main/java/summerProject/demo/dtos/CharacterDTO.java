@@ -4,10 +4,16 @@ public class CharacterDTO {
     private String name;
     private Integer characterClass;
     private Integer level;
-    private GameLocationDTO currentLocation;
-    private CharacteristicDTO powerRate;
+    private GameLocationDTO currentLocation = null;
+    private CharacteristicDTO powerRate = null;
 
     public CharacterDTO() {
+    }
+
+    public CharacterDTO(String name, Integer characterClass, Integer level) {
+        this.name = name;
+        this.characterClass = characterClass;
+        this.level = level;
     }
 
     public CharacterDTO(String name, Integer characterClass, Integer level, GameLocationDTO currentLocation, CharacteristicDTO powerRate) {
