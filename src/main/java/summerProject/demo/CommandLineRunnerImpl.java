@@ -26,9 +26,6 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         addData();
-        printData();
-//        characterService.findQuestContent("will");
-//        System.out.println(info.get(0));
     }
     private void addData() throws Exception{
         String[] characterNames = {"will", "gin", "tim", "tom", "rom"};
@@ -44,7 +41,8 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
             questService.save(new QuestDTO(questNames[i], "*optional*",
                     gameLocationDTO, gameLocationDTO, "fox"));
             itemService.save(new ItemDTO(itemNames[i],
-                    itemService.saveAndGetCharacteristic(new CharacteristicDTO(0,1,2,3,4,5,6)),
+                    itemService.saveAndGetCharacteristic(new CharacteristicDTO(
+                            0,1,2,3,4,5,6)),
                     2, "wow!"));
             characterService.saveAndGet(new CharacterDTO(characterNames[i], 1));
         }
@@ -55,13 +53,5 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         characterService.addQuest("will", "defet");
         characterService.addQuest("will", "the great idea");
         characterService.addItem("will", "stone");
-    }
-    private void printData() throws Exception{
-        List<CharacterDTO> characterDTOList = characterService.getAll();
-        for (CharacterDTO c:characterDTOList){
-            System.out.println(c.toString());
-//            GameLocationDTO location = c.getCurrentLocation();
-//            System.out.println("Character Location: " + location.getName());
-        }
     }
 }

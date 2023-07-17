@@ -66,4 +66,10 @@ public class ItemServiceImpl implements ItemService<String> {
         return itemRepository.findAllItemsByQuestName(questName).stream().map((element)->
                 modelMapper.map(element, QuestDTO.class)).toList();
     }
+
+    @Override
+    public List<CharacteristicDTO> findAllCharacteristics(String questName) {
+        return itemRepository.findAllCharacteristicsForItemByQuestName(questName).stream().map((element)->
+                modelMapper.map(element, CharacteristicDTO.class)).toList();
+    }
 }

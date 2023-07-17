@@ -3,11 +3,11 @@ package summerProject.demo.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import summerProject.demo.dtos.CharacterDTO;
+import summerProject.demo.dtos.CharacteristicDTO;
 import summerProject.demo.dtos.QuestDTO;
 import summerProject.demo.exceptions.AppError;
 import summerProject.demo.services.CharacterService;
@@ -16,8 +16,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.*;
-import java.util.stream.Collectors;
-
 
 @RestController
 @RequestMapping("/api/character")
@@ -31,7 +29,7 @@ public class CharacterController {
 
     @GetMapping("/{id}")
     ResponseEntity<?> getOne(@PathVariable String id) throws Throwable {
-       Optional<CharacterDTO> characterDTO = characterService.get(id);
+        Optional<CharacterDTO> characterDTO = characterService.get(id);
         if (characterDTO.isEmpty()) {
             return new ResponseEntity<>(new AppError(HttpStatus.NOT_FOUND.value(),
                     "Product with id " + id + " not found"), HttpStatus.NOT_FOUND);
@@ -79,5 +77,9 @@ public class CharacterController {
             e.printStackTrace();
         }
         return null;
+    }
+    @PostMapping("/custom4/{characterClass}")
+    List<CharacteristicDTO> characterByClass(@PathVariable int characterClass) {
+        return characterService.findCharacterByClass(characterClass);
     }
 }

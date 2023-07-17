@@ -13,4 +13,5 @@ import java.util.List;
 public interface CharacterRepository extends JpaRepository<Character, String> {
     @Query(value = "SELECT ql.quest FROM QuestLog ql JOIN ql.character q WHERE ql.character.name = :playerName")
     List<Quest> findQuestContentByPlayerName(@Param("playerName") String playerName);
+    List<Character> findCharacterByCharacterClass(int characterClass);
 }

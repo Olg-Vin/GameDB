@@ -7,17 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-//		(scanBasePackages={
-//		"summerProject.demo.services.CharacterService", "summerProject.demo.CommandLineRunnerImpl"})
 public class GameDbApplication {
 	@Bean
 	public ModelMapper modelMapper(){
 		ModelMapper modelMapper = new ModelMapper();
-
 		modelMapper.getConfiguration()
 				.setFieldMatchingEnabled(true)
 				.setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
-
 		return modelMapper;
 	}
 

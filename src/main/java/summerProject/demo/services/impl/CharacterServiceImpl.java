@@ -1,6 +1,5 @@
 package summerProject.demo.services.impl;
 
-import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,12 +7,10 @@ import summerProject.demo.dtos.CharacterDTO;
 import summerProject.demo.dtos.CharacteristicDTO;
 import summerProject.demo.dtos.GameLocationDTO;
 import summerProject.demo.dtos.QuestDTO;
-import summerProject.demo.exceptions.ResourceNotFoundException;
 import summerProject.demo.models.*;
 import summerProject.demo.models.Character;
 import summerProject.demo.models.compositeKeys.InventoryLogKeys;
 import summerProject.demo.models.compositeKeys.QuestLogKeys;
-import summerProject.demo.models.compositeKeys.RewardLogKeys;
 import summerProject.demo.repositories.*;
 import summerProject.demo.services.CharacterService;
 
@@ -43,7 +40,7 @@ public class CharacterServiceImpl implements CharacterService<String> {
     public void save(CharacterDTO characterDTO) {
         characterRepository.save(modelMapper.map(characterDTO, Character.class));
     }
-// create new character, add default location and start characteristics
+// create new character, add.text default location and start characteristics
     @Override
     public CharacterDTO saveAndGet(CharacterDTO characterDTO) {
         characterDTO.setLevel(1);
@@ -122,5 +119,11 @@ public class CharacterServiceImpl implements CharacterService<String> {
     public List<QuestDTO> findQuestContent(String playerName) {
         return characterRepository.findQuestContentByPlayerName(playerName).stream().map((element)->
             modelMapper.map(element, QuestDTO.class)).toList();
+    }
+
+    @Override
+    public List<CharacterDTO> findCharacterByClass(int characterClass) {
+        return characterRepository.findCharacterByCharacterClass(characterClass).stream().map((element)->
+                modelMapper.map(element, CharacterDTO.class)).toList();
     }
 }

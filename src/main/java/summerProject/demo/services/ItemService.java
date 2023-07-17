@@ -19,4 +19,5 @@ public interface ItemService<ID> {
     CharacteristicDTO saveAndGetCharacteristic(CharacteristicDTO characteristicDTO);
 
     List<QuestDTO> findAllItems(String itemName);
+    List<CharacteristicDTO> findAllCharacteristics(String questName);
 }

@@ -8,7 +8,7 @@ import summerProject.demo.services.GameLocationService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/table/location")
+@RequestMapping("/api/location")
 public class GameLocationController {
     @Autowired
     private GameLocationService gameLocationService;
@@ -21,7 +21,7 @@ public class GameLocationController {
         return gameLocationService.get(id);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add.text")
     GameLocationDTO newLocation(@RequestBody GameLocationDTO newDTO) {
         return gameLocationService.saveAndGet(newDTO);
     }

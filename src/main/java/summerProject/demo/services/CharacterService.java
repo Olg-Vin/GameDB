@@ -4,8 +4,6 @@ import summerProject.demo.dtos.CharacterDTO;
 import summerProject.demo.dtos.CharacteristicDTO;
 import summerProject.demo.dtos.GameLocationDTO;
 import summerProject.demo.dtos.QuestDTO;
-import summerProject.demo.models.Characteristic;
-import summerProject.demo.models.GameLocation;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +11,6 @@ import java.util.Optional;
 public interface CharacterService<ID> {
     void save(CharacterDTO characterDTO);
     CharacterDTO saveAndGet(CharacterDTO characterDTO);//    for foreign key
-//    void saveAndGet(CharacterDTO characterDTO);
 
     Optional<CharacterDTO> get(ID id);
     List<CharacterDTO> getAll();
@@ -28,4 +25,5 @@ public interface CharacterService<ID> {
     void addItem(String characterName, String itemName);
 
     List<QuestDTO> findQuestContent(String playerName);
+    List<CharacterDTO> findCharacterByClass (int characterClass);
 }

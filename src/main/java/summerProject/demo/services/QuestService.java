@@ -1,8 +1,6 @@
 package summerProject.demo.services;
 
-import summerProject.demo.dtos.ItemDTO;
 import summerProject.demo.dtos.QuestDTO;
-import summerProject.demo.models.RewardLog;
 
 import java.util.List;
 

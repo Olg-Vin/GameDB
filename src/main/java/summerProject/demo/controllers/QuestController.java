@@ -8,7 +8,7 @@ import summerProject.demo.services.QuestService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/table/quest")
+@RequestMapping("/api/quest")
 public class QuestController {
     @Autowired
     private QuestService questService;
@@ -21,7 +21,7 @@ public class QuestController {
         return questService.get(id);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add.text")
     QuestDTO newQuest(@RequestBody QuestDTO newDTO) {
         return questService.saveAndGet(newDTO);
     }

@@ -3,7 +3,6 @@ package summerProject.demo.services.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import summerProject.demo.dtos.ItemDTO;
 import summerProject.demo.dtos.QuestDTO;
 import summerProject.demo.models.Item;
 import summerProject.demo.models.Quest;
