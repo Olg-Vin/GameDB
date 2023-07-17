@@ -31,6 +31,7 @@ public class CharacterController {
         return characterService.getAll();
     }
 //    todo
+
     @GetMapping("/{id}")
     ResponseEntity<?> getOne(@PathVariable String id) throws Throwable {
        Optional<CharacterDTO> characterDTO = characterService.get(id);

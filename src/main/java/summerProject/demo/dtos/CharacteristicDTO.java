@@ -1,13 +1,13 @@
 package summerProject.demo.dtos;
 
 public class CharacteristicDTO {
-    private Integer id = 0;
-    private Integer strength = 50;
-    private Integer health = 150;
-    private Integer intelligence = 50;
-    private Integer dexterity = 50;
-    private Integer charisma = 50;
-    private Integer luck = 50;
+    private Integer id;
+    private Integer strength;
+    private Integer health;
+    private Integer intelligence;
+    private Integer dexterity;
+    private Integer charisma;
+    private Integer luck;
 
     public CharacteristicDTO() {
     }

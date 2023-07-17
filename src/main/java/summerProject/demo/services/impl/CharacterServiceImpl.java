@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import summerProject.demo.dtos.CharacterDTO;
 import summerProject.demo.dtos.CharacteristicDTO;
+import summerProject.demo.dtos.GameLocationDTO;
 import summerProject.demo.exceptions.ResourceNotFoundException;
 import summerProject.demo.models.Character;
 import summerProject.demo.models.Characteristic;
@@ -32,13 +33,13 @@ public class CharacterServiceImpl implements CharacterService<String> {
     public void save(CharacterDTO characterDTO) {
         characterRepository.save(modelMapper.map(characterDTO, Character.class));
     }
-
+// create new character, add default location and start characteristics
     @Override
     public CharacterDTO saveAndGet(CharacterDTO characterDTO) {
+        characterDTO.setLevel(1);
+        characterDTO.setCurrentLocation(getDefGameLocation());
+        characterDTO.setPowerRate(getDefCharacteristic());
         Character c = modelMapper.map(characterDTO, Character.class);
-        GameLocation g = gameLocationRepository.findById("yandex").orElseThrow();
-        c.setCurrentLocation(modelMapper.map(g, GameLocation.class));
-        c.setPowerRate(getDefCharacteristic());
         return modelMapper.map(characterRepository.save(c), CharacterDTO.class);
     }
 
@@ -66,7 +67,13 @@ public class CharacterServiceImpl implements CharacterService<String> {
     }
 
     @Override
-    public Characteristic getDefCharacteristic() {
-        return characteristicRepository.save(new Characteristic());
+    public CharacteristicDTO getDefCharacteristic() {
+        return modelMapper.map(characteristicRepository.save(
+                new Characteristic(0,50,150,50,50,50,50)), CharacteristicDTO.class);
+    }
+
+    @Override
+    public GameLocationDTO getDefGameLocation() {
+        return modelMapper.map(gameLocationRepository.findById("yandex"), GameLocationDTO.class);
     }
 }

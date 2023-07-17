@@ -8,19 +8,19 @@ public class Characteristic {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
 //    todo not null attribute
-    private Integer id = 0;
+    private Integer id;
     @Column(name = "strength")
-    private Integer strength = 50;
+    private Integer strength;
     @Column(name = "health")
-    private Integer health = 150;
+    private Integer health;
     @Column(name = "intelligence")
-    private Integer intelligence = 50;
+    private Integer intelligence;
     @Column(name = "dexterity")
-    private Integer dexterity = 50;
+    private Integer dexterity;
     @Column(name = "charisma")
-    private Integer charisma =50;
+    private Integer charisma;
     @Column(name = "luck")
-    private Integer luck = 50;
+    private Integer luck;
 
     public Characteristic() {
     }

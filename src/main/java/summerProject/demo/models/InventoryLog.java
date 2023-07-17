@@ -1,36 +1,39 @@
 package summerProject.demo.models;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
+import summerProject.demo.models.compositeKeys.InventoryLogKeys;
 
 @Entity
 @Table(name = "inventory_log")
 public class InventoryLog {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @EmbeddedId
+    InventoryLogKeys id;
+
     @ManyToOne
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @JoinColumn
+    @MapsId("characterName")
+    @JoinColumn(name = "character_name")
     private Character character;
     @ManyToOne
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @JoinColumn
+    @MapsId("itemName")
+    @JoinColumn(name = "item_name")
     private Item item;
+    @Column(name = "count_of_item")
+    private int count;
 
     protected InventoryLog() {
     }
 
-    public InventoryLog(Character character, Item item) {
+    public InventoryLog(Character character, Item item, int count) {
         this.character = character;
         this.item = item;
+        this.count = count;
     }
 
     public Character getCharacter() {
         return character;
     }
 
-    public void setCharacter(Character character) {
+    protected void setCharacter(Character character) {
         this.character = character;
     }
 
@@ -38,8 +41,16 @@ public class InventoryLog {
         return item;
     }
 
-    public void setItem(Item item) {
+    protected void setItem(Item item) {
         this.item = item;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    protected void setCount(int count) {
+        this.count = count;
     }
 
     @Override

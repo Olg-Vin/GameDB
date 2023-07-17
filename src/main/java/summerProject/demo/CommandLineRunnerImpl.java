@@ -35,7 +35,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         String[] itemNames = {"stone", "stick", "weapon", "back", "scrin"};
         String[] questNames = {"defet", "amount", "collect saver", "escape the king", "the great idea"};
 
-        GameLocationDTO gameLocationDTO = new GameLocationDTO("yandex", "legend", 2);
+        GameLocationDTO gameLocationDTO = new GameLocationDTO("default", "legend", 2);
         gameLocationService.save(gameLocationDTO);
 
         for (int i = 0; i < characterNames.length; i++){
@@ -45,8 +45,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
             itemService.save(new ItemDTO(itemNames[i],
                     characteristicService.saveAndGet(new CharacteristicDTO(0,1,2,3,4,5,6)),
                     2, "hyi"));
-            characterService.saveAndGet(new CharacterDTO(characterNames[i], 1, 1
-                    ));
+            characterService.saveAndGet(new CharacterDTO(characterNames[i], 1));
         }
     }
     private void printData() throws Exception{

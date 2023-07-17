@@ -1,11 +1,15 @@
 package summerProject.demo.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+
+import java.util.List;
 
 @Entity
 @Table(name = "location")
 public class GameLocation {
     @Id
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @Column(name = "name", length = 255, nullable = false)
     private String name;
     @Column(name = "legend", length = 512)

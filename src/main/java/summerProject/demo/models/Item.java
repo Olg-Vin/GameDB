@@ -1,6 +1,7 @@
 package summerProject.demo.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "item")
@@ -10,6 +11,7 @@ public class Item {
     private String name;
     @OneToOne
     @JoinColumn(name = "properties")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Characteristic properties;
     @Column(name = "type", nullable = false)
     private Integer type;

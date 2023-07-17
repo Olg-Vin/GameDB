@@ -1,17 +1,21 @@
 package summerProject.demo.models;
 
 import jakarta.persistence.*;
+import summerProject.demo.models.compositeKeys.QuestLogKeys;
 
 @Entity
 @Table(name = "quest_log")
 public class QuestLog {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @EmbeddedId
+    QuestLogKeys id;
+
+    @ManyToOne
+    @MapsId("characterName")
     @JoinColumn
     private Character character;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @MapsId("questName")
     @JoinColumn
     private Quest quest;
 

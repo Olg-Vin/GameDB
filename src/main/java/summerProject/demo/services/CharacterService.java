@@ -1,7 +1,10 @@
 package summerProject.demo.services;
 
 import summerProject.demo.dtos.CharacterDTO;
+import summerProject.demo.dtos.CharacteristicDTO;
+import summerProject.demo.dtos.GameLocationDTO;
 import summerProject.demo.models.Characteristic;
+import summerProject.demo.models.GameLocation;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,5 +20,6 @@ public interface CharacterService<ID> {
     void update(CharacterDTO characterDTO);
     void delete(ID id);
 
-    Characteristic getDefCharacteristic();
+    CharacteristicDTO getDefCharacteristic();
+    GameLocationDTO getDefGameLocation();
 }
