@@ -3,6 +3,7 @@ package summerProject.demo.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import summerProject.demo.dtos.QuestDTO;
+import summerProject.demo.exceptions.ResourceNotFoundException;
 import summerProject.demo.services.QuestService;
 
 import java.util.List;
@@ -17,11 +18,11 @@ public class QuestController {
         return questService.getAll();
     }
     @GetMapping("/{id}")
-    QuestDTO getOne(@PathVariable String id){
-        return questService.get(id);
+    QuestDTO getOne(@PathVariable String id) throws Throwable{
+        return (QuestDTO) questService.get(id).orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
-    @PostMapping("/add.text")
+    @PostMapping("/add")
     QuestDTO newQuest(@RequestBody QuestDTO newDTO) {
         return questService.saveAndGet(newDTO);
     }

@@ -13,6 +13,7 @@ import summerProject.demo.repositories.ItemRepository;
 import summerProject.demo.services.ItemService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ItemServiceImpl implements ItemService<String> {
@@ -35,8 +36,8 @@ public class ItemServiceImpl implements ItemService<String> {
     }
 
     @Override
-    public ItemDTO get(String s) {
-        return modelMapper.map(itemRepository.findById(s), ItemDTO.class);
+    public Optional<ItemDTO> get(String s) {
+        return Optional.ofNullable(modelMapper.map(itemRepository.findById(s), ItemDTO.class));
     }
 
     @Override

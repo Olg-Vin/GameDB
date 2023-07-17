@@ -14,6 +14,7 @@ import summerProject.demo.repositories.RewardLogRepository;
 import summerProject.demo.services.QuestService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestServiceImpl implements QuestService<String > {
@@ -37,8 +38,8 @@ public class QuestServiceImpl implements QuestService<String > {
     }
 
     @Override
-    public QuestDTO get(String s) {
-        return modelMapper.map(questRepository.findById(s), QuestDTO.class);
+    public Optional<QuestDTO> get(String s) {
+        return Optional.ofNullable(modelMapper.map(questRepository.findById(s), QuestDTO.class));
     }
 
     @Override

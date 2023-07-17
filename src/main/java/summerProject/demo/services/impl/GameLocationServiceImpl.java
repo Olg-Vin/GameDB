@@ -11,6 +11,7 @@ import summerProject.demo.repositories.QuestRepository;
 import summerProject.demo.services.GameLocationService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GameLocationServiceImpl implements GameLocationService<String> {
@@ -36,8 +37,8 @@ public class GameLocationServiceImpl implements GameLocationService<String> {
     }
 
     @Override
-    public GameLocationDTO get(String s) {
-        return modelMapper.map(gameLocationRepository.findById(s), GameLocationDTO.class);
+    public Optional<GameLocationDTO> get(String s) {
+        return Optional.ofNullable(modelMapper.map(gameLocationRepository.findById(s), GameLocationDTO.class));
     }
 
     @Override

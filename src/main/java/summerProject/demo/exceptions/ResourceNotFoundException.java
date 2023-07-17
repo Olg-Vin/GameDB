@@ -2,6 +2,6 @@ package summerProject.demo.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException{
     public ResourceNotFoundException(String message) {
-        super("not found " + message);
+        super("not found object with id = " + message);
     }
 }

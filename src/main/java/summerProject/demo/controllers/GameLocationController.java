@@ -3,6 +3,7 @@ package summerProject.demo.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import summerProject.demo.dtos.GameLocationDTO;
+import summerProject.demo.exceptions.ResourceNotFoundException;
 import summerProject.demo.services.GameLocationService;
 
 import java.util.List;
@@ -17,8 +18,8 @@ public class GameLocationController {
         return gameLocationService.getAll();
     }
     @GetMapping("/{id}")
-    GameLocationDTO getOne(@PathVariable String id){
-        return gameLocationService.get(id);
+    GameLocationDTO getOne(@PathVariable String id) throws Throwable{
+        return (GameLocationDTO) gameLocationService.get(id).orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     @PostMapping("/add.text")

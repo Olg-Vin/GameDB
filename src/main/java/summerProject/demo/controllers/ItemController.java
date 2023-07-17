@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import summerProject.demo.dtos.CharacteristicDTO;
 import summerProject.demo.dtos.ItemDTO;
 import summerProject.demo.dtos.QuestDTO;
+import summerProject.demo.exceptions.ResourceNotFoundException;
 import summerProject.demo.models.Characteristic;
 import summerProject.demo.services.ItemService;
 
@@ -26,11 +27,11 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
-    ItemDTO getOne(@PathVariable String id){
-        return itemService.get(id);
+    ItemDTO getOne(@PathVariable String id) throws Throwable{
+        return (ItemDTO) itemService.get(id).orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
-    @PostMapping("/add.text")
+    @PostMapping("/add")
     ItemDTO newItem(@RequestBody ItemDTO newDTO) {
         return itemService.saveAndGet(newDTO);
     }

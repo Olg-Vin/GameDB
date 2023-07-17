@@ -5,12 +5,13 @@ import summerProject.demo.dtos.ItemDTO;
 import summerProject.demo.dtos.QuestDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ItemService<ID> {
     void save(ItemDTO itemDTO);
     ItemDTO saveAndGet(ItemDTO itemDTO);//    for foreign key
 
-    ItemDTO get(ID id);
+    Optional<ItemDTO> get(ID id);
     List<ItemDTO> getAll();
 
     void update(ItemDTO itemDTO);
