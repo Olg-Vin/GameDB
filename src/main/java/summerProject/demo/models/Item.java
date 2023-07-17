@@ -14,14 +14,14 @@ public class Item {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Characteristic properties;
     @Column(name = "type", nullable = false)
-    private Integer type;
+    private int type;
     @Column(name = "description", length = 255, nullable = false)
     private String description;
 
     protected Item() {
     }
 
-    public Item(String name, Characteristic properties, Integer type, String description) {
+    public Item(String name, Characteristic properties, int type, String description) {
         this.name = name;
         this.properties = properties;
         this.type = type;
@@ -44,11 +44,11 @@ public class Item {
         this.properties = properties;
     }
 
-    public Integer getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(int type) {
         this.type = type;
     }
 

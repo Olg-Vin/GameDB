@@ -3,12 +3,12 @@ package summerProject.demo.dtos;
 public class GameLocationDTO {
     private String name;
     private String legend;
-    private Integer maxNPC;
+    private int maxNPC;
 
     public GameLocationDTO() {
     }
 
-    public GameLocationDTO(String name, String legend, Integer maxNPC) {
+    public GameLocationDTO(String name, String legend, int maxNPC) {
         this.name = name;
         this.legend = legend;
         this.maxNPC = maxNPC;
@@ -30,11 +30,11 @@ public class GameLocationDTO {
         this.legend = legend;
     }
 
-    public Integer getMaxNPC() {
+    public int getMaxNPC() {
         return maxNPC;
     }
 
-    public void setMaxNPC(Integer maxNPC) {
+    public void setMaxNPC(int maxNPC) {
         this.maxNPC = maxNPC;
     }
 

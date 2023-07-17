@@ -1,19 +1,19 @@
 package summerProject.demo.dtos;
 
 public class CharacteristicDTO {
-    private Integer id;
-    private Integer strength;
-    private Integer health;
-    private Integer intelligence;
-    private Integer dexterity;
-    private Integer charisma;
-    private Integer luck;
+    private int id;
+    private int strength;
+    private int health;
+    private int intelligence;
+    private int dexterity;
+    private int charisma;
+    private int luck;
 
     public CharacteristicDTO() {
     }
 
-    public CharacteristicDTO(Integer id, Integer strength, Integer health, Integer intelligence,
-                             Integer dexterity, Integer charisma, Integer luck) {
+    public CharacteristicDTO(int id, int strength, int health, int intelligence,
+                             int dexterity, int charisma, int luck) {
         this.id = id;
         this.strength = strength;
         this.health = health;
@@ -23,59 +23,59 @@ public class CharacteristicDTO {
         this.luck = luck;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getStrength() {
+    public int getStrength() {
         return strength;
     }
 
-    public void setStrength(Integer strength) {
+    public void setStrength(int strength) {
         this.strength = strength;
     }
 
-    public Integer getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public void setHealth(Integer health) {
+    public void setHealth(int health) {
         this.health = health;
     }
 
-    public Integer getIntelligence() {
+    public int getIntelligence() {
         return intelligence;
     }
 
-    public void setIntelligence(Integer intelligence) {
+    public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }
 
-    public Integer getDexterity() {
+    public int getDexterity() {
         return dexterity;
     }
 
-    public void setDexterity(Integer dexterity) {
+    public void setDexterity(int dexterity) {
         this.dexterity = dexterity;
     }
 
-    public Integer getCharisma() {
+    public int getCharisma() {
         return charisma;
     }
 
-    public void setCharisma(Integer charisma) {
+    public void setCharisma(int charisma) {
         this.charisma = charisma;
     }
 
-    public Integer getLuck() {
+    public int getLuck() {
         return luck;
     }
 
-    public void setLuck(Integer luck) {
+    public void setLuck(int luck) {
         this.luck = luck;
     }
 

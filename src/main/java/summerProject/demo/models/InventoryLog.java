@@ -8,7 +8,6 @@ import summerProject.demo.models.compositeKeys.InventoryLogKeys;
 public class InventoryLog {
     @EmbeddedId
     InventoryLogKeys id;
-
     @ManyToOne
     @MapsId("characterName")
     @JoinColumn(name = "character_name")
@@ -23,9 +22,8 @@ public class InventoryLog {
     protected InventoryLog() {
     }
 
-    public InventoryLog(Character character, Item item, int count) {
-        this.character = character;
-        this.item = item;
+    public InventoryLog(InventoryLogKeys key, int count) {
+        this.id = key;
         this.count = count;
     }
 
@@ -33,7 +31,7 @@ public class InventoryLog {
         return character;
     }
 
-    protected void setCharacter(Character character) {
+    public void setCharacter(Character character) {
         this.character = character;
     }
 
@@ -41,7 +39,7 @@ public class InventoryLog {
         return item;
     }
 
-    protected void setItem(Item item) {
+    public void setItem(Item item) {
         this.item = item;
     }
 
@@ -49,7 +47,7 @@ public class InventoryLog {
         return count;
     }
 
-    protected void setCount(int count) {
+    public void setCount(int count) {
         this.count = count;
     }
 

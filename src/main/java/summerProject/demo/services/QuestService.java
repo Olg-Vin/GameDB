@@ -1,6 +1,8 @@
 package summerProject.demo.services;
 
+import summerProject.demo.dtos.ItemDTO;
 import summerProject.demo.dtos.QuestDTO;
+import summerProject.demo.models.RewardLog;
 
 import java.util.List;
 
@@ -13,4 +15,6 @@ public interface QuestService<ID> {
 
     void update(QuestDTO questDTO);
     void delete(ID id);
+
+    void addItem(String questName, String itemName, int count);
 }

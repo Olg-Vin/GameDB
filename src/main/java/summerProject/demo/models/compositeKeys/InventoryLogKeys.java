@@ -10,7 +10,6 @@ import java.util.Objects;
 public class InventoryLogKeys implements Serializable {
     @Column(name = "character_name")
     String characterName;
-
     @Column(name = "item_name")
     String itemName;
 

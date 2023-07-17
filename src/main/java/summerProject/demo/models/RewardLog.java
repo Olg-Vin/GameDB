@@ -11,7 +11,7 @@ public class RewardLog {
 
     @ManyToOne
     @MapsId("questName")
-    @JoinColumn(name = "quest_name")
+    @JoinColumn(name = "quest")
     private Quest quest;
     @ManyToOne
     @MapsId("itemName")
@@ -23,9 +23,8 @@ public class RewardLog {
     protected RewardLog() {
     }
 
-    public RewardLog(Quest quest, Item item, int count) {
-        this.quest = quest;
-        this.item = item;
+    public RewardLog(RewardLogKeys key, int count) {
+        this.id = key;
         this.count = count;
     }
 

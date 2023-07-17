@@ -3,8 +3,12 @@ package summerProject.demo.services.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import summerProject.demo.dtos.CharacteristicDTO;
 import summerProject.demo.dtos.ItemDTO;
+import summerProject.demo.dtos.QuestDTO;
+import summerProject.demo.models.Characteristic;
 import summerProject.demo.models.Item;
+import summerProject.demo.repositories.CharacteristicRepository;
 import summerProject.demo.repositories.ItemRepository;
 import summerProject.demo.services.ItemService;
 
@@ -16,6 +20,9 @@ public class ItemServiceImpl implements ItemService<String> {
     private ItemRepository itemRepository;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private CharacteristicRepository characteristicRepository;
+
     @Override
     public void save(ItemDTO itemDTO) {
         itemRepository.save(modelMapper.map(itemDTO, Item.class));
@@ -46,5 +53,17 @@ public class ItemServiceImpl implements ItemService<String> {
     @Override
     public void delete(String s) {
         itemRepository.deleteById(s);
+    }
+
+    @Override
+    public CharacteristicDTO saveAndGetCharacteristic(CharacteristicDTO characteristicDTO) {
+        Characteristic c = modelMapper.map(characteristicDTO, Characteristic.class);
+        return modelMapper.map(characteristicRepository.save(c), CharacteristicDTO.class);
+    }
+
+    @Override
+    public List<QuestDTO> findAllItems(String questName) {
+        return itemRepository.findAllItemsByQuestName(questName).stream().map((element)->
+                modelMapper.map(element, QuestDTO.class)).toList();
     }
 }

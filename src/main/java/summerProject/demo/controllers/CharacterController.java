@@ -8,29 +8,26 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import summerProject.demo.dtos.CharacterDTO;
+import summerProject.demo.dtos.QuestDTO;
 import summerProject.demo.exceptions.AppError;
 import summerProject.demo.services.CharacterService;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping("/api/table/character")
+@RequestMapping("/api/character")
 public class CharacterController {
     @Autowired
     private CharacterService characterService;
-
     @GetMapping("/")
     List<CharacterDTO> getAll() {
         return characterService.getAll();
     }
-//    todo
 
     @GetMapping("/{id}")
     ResponseEntity<?> getOne(@PathVariable String id) throws Throwable {
@@ -69,5 +66,18 @@ public class CharacterController {
             e.printStackTrace();
         }
     }
-//    todo custom
+    @PostMapping("/custom/1")
+    List<QuestDTO> questContent(@RequestBody String json) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            JsonNode rootNode = objectMapper.readTree(json);
+            String id = rootNode.get("playerName").asText();
+            return characterService.findQuestContent(id);
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

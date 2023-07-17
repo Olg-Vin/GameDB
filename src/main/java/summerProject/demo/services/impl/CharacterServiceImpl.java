@@ -1,18 +1,20 @@
 package summerProject.demo.services.impl;
 
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import summerProject.demo.dtos.CharacterDTO;
 import summerProject.demo.dtos.CharacteristicDTO;
 import summerProject.demo.dtos.GameLocationDTO;
+import summerProject.demo.dtos.QuestDTO;
 import summerProject.demo.exceptions.ResourceNotFoundException;
+import summerProject.demo.models.*;
 import summerProject.demo.models.Character;
-import summerProject.demo.models.Characteristic;
-import summerProject.demo.models.GameLocation;
-import summerProject.demo.repositories.CharacterRepository;
-import summerProject.demo.repositories.CharacteristicRepository;
-import summerProject.demo.repositories.GameLocationRepository;
+import summerProject.demo.models.compositeKeys.InventoryLogKeys;
+import summerProject.demo.models.compositeKeys.QuestLogKeys;
+import summerProject.demo.models.compositeKeys.RewardLogKeys;
+import summerProject.demo.repositories.*;
 import summerProject.demo.services.CharacterService;
 
 import java.util.List;
@@ -25,7 +27,15 @@ public class CharacterServiceImpl implements CharacterService<String> {
     @Autowired
     private GameLocationRepository gameLocationRepository;
     @Autowired
+    private QuestRepository questRepository;
+    @Autowired
     private CharacteristicRepository characteristicRepository;
+    @Autowired
+    private QuestLogRepository questLogRepository;
+    @Autowired
+    private ItemRepository itemRepository;
+    @Autowired
+    private InventoryLogRepository inventoryLogRepository;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -42,25 +52,19 @@ public class CharacterServiceImpl implements CharacterService<String> {
         Character c = modelMapper.map(characterDTO, Character.class);
         return modelMapper.map(characterRepository.save(c), CharacterDTO.class);
     }
-
-
     @Override
     public Optional<CharacterDTO> get(String s) {
         return Optional.ofNullable(modelMapper.map(characterRepository.findById(s), CharacterDTO.class));
-//        .orElseThrow(() -> new ResourceNotFoundException("Character with id " + s + " not found"))
     }
-
     @Override
     public List<CharacterDTO> getAll() {
         return characterRepository.findAll().
                 stream().map((s)->modelMapper.map(s, CharacterDTO.class)).toList();
     }
-
     @Override
     public void update(CharacterDTO characterDTO) {
         characterRepository.save(modelMapper.map(characterDTO, Character.class));
     }
-
     @Override
     public void delete(String s) {
         characterRepository.deleteById(s);
@@ -74,6 +78,49 @@ public class CharacterServiceImpl implements CharacterService<String> {
 
     @Override
     public GameLocationDTO getDefGameLocation() {
-        return modelMapper.map(gameLocationRepository.findById("yandex"), GameLocationDTO.class);
+        return modelMapper.map(gameLocationRepository.findById("default"), GameLocationDTO.class);
+    }
+
+    @Override
+    public void addQuest(String characterName, String questName) {
+        Quest quest = questRepository.findById(questName).orElseThrow();
+        Character character = characterRepository.findById(characterName).orElseThrow();
+//        create composite key
+        QuestLogKeys key = new QuestLogKeys();
+        key.setQuestName(questName);
+        key.setCharacterName(characterName);
+//          create obj
+        QuestLog questLog = new QuestLog(key);
+        questLog.setQuest(quest);
+        questLog.setCharacter(character);
+        questLogRepository.save(questLog);
+    }
+
+    @Override
+    public void addItem(String characterName, String itemName) {
+        Character character = characterRepository.findById(characterName).orElseThrow();
+        Item item = itemRepository.findById(itemName).orElseThrow();
+//        create composite key
+        InventoryLogKeys key = new InventoryLogKeys();
+        key.setCharacterName(characterName);
+        key.setItemName(itemName);
+        if (inventoryLogRepository.findById(key).isEmpty()){
+//          create obj
+            InventoryLog inventoryLog = new InventoryLog(key, 1);
+            inventoryLog.setCharacter(character);
+            inventoryLog.setItem(item);
+            inventoryLogRepository.save(inventoryLog);
+        }
+        else {
+            InventoryLog inventoryLog = inventoryLogRepository.findById(key).orElseThrow();
+            inventoryLog.setCount(inventoryLog.getCount()+1);
+            inventoryLogRepository.save(inventoryLog);
+        }
+    }
+
+    @Override
+    public List<QuestDTO> findQuestContent(String playerName) {
+        return characterRepository.findQuestContentByPlayerName(playerName).stream().map((element)->
+            modelMapper.map(element, QuestDTO.class)).toList();
     }
 }

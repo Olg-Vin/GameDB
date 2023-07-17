@@ -7,25 +7,24 @@ import jakarta.persistence.*;
 public class Characteristic {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-//    todo not null attribute
-    private Integer id;
+    private int id;
     @Column(name = "strength")
-    private Integer strength;
+    private int strength;
     @Column(name = "health")
-    private Integer health;
+    private int health;
     @Column(name = "intelligence")
-    private Integer intelligence;
+    private int intelligence;
     @Column(name = "dexterity")
-    private Integer dexterity;
+    private int dexterity;
     @Column(name = "charisma")
-    private Integer charisma;
+    private int charisma;
     @Column(name = "luck")
-    private Integer luck;
+    private int luck;
 
     public Characteristic() {
     }
 
-    public Characteristic(Integer id, Integer strength, Integer health, Integer intelligence, Integer dexterity, Integer charisma, Integer luck) {
+    public Characteristic(int id, int strength, int health, int intelligence, int dexterity, int charisma, int luck) {
         this.id = id;
         this.strength = strength;
         this.health = health;
@@ -35,59 +34,59 @@ public class Characteristic {
         this.luck = luck;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getStrength() {
+    public int getStrength() {
         return strength;
     }
 
-    public void setStrength(Integer strength) {
+    public void setStrength(int strength) {
         this.strength = strength;
     }
 
-    public Integer getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public void setHealth(Integer health) {
+    public void setHealth(int health) {
         this.health = health;
     }
 
-    public Integer getIntelligence() {
+    public int getIntelligence() {
         return intelligence;
     }
 
-    public void setIntelligence(Integer intelligence) {
+    public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }
 
-    public Integer getDexterity() {
+    public int getDexterity() {
         return dexterity;
     }
 
-    public void setDexterity(Integer dexterity) {
+    public void setDexterity(int dexterity) {
         this.dexterity = dexterity;
     }
 
-    public Integer getCharisma() {
+    public int getCharisma() {
         return charisma;
     }
 
-    public void setCharisma(Integer charisma) {
+    public void setCharisma(int charisma) {
         this.charisma = charisma;
     }
 
-    public Integer getLuck() {
+    public int getLuck() {
         return luck;
     }
 
-    public void setLuck(Integer luck) {
+    public void setLuck(int luck) {
         this.luck = luck;
     }
 

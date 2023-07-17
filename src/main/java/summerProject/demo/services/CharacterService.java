@@ -3,6 +3,7 @@ package summerProject.demo.services;
 import summerProject.demo.dtos.CharacterDTO;
 import summerProject.demo.dtos.CharacteristicDTO;
 import summerProject.demo.dtos.GameLocationDTO;
+import summerProject.demo.dtos.QuestDTO;
 import summerProject.demo.models.Characteristic;
 import summerProject.demo.models.GameLocation;
 
@@ -22,4 +23,9 @@ public interface CharacterService<ID> {
 
     CharacteristicDTO getDefCharacteristic();
     GameLocationDTO getDefGameLocation();
+
+    void addQuest(String characterName, String questName);
+    void addItem(String characterName, String itemName);
+
+    List<QuestDTO> findQuestContent(String playerName);
 }

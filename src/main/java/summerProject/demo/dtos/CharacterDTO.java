@@ -2,20 +2,20 @@ package summerProject.demo.dtos;
 
 public class CharacterDTO {
     private String name;
-    private Integer characterClass;
-    private Integer level;
+    private int characterClass;
+    private int level;
     private GameLocationDTO currentLocation;
     private CharacteristicDTO powerRate;
 
     public CharacterDTO() {
     }
 
-    public CharacterDTO(String name, Integer characterClass) {
+    public CharacterDTO(String name, int characterClass) {
         this.name = name;
         this.characterClass = characterClass;
     }
 
-    public CharacterDTO(String name, Integer characterClass, Integer level, GameLocationDTO currentLocation, CharacteristicDTO powerRate) {
+    public CharacterDTO(String name, int characterClass, int level, GameLocationDTO currentLocation, CharacteristicDTO powerRate) {
         this.name = name;
         this.characterClass = characterClass;
         this.level = level;
@@ -31,19 +31,19 @@ public class CharacterDTO {
         this.name = name;
     }
 
-    public Integer getCharacterClass() {
+    public int getCharacterClass() {
         return characterClass;
     }
 
-    private void setCharacterClass(Integer characterClass) {
+    private void setCharacterClass(int characterClass) {
         this.characterClass = characterClass;
     }
 
-    public Integer getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    public void setLevel(Integer level) {
+    public void setLevel(int level) {
         this.level = level;
     }
 

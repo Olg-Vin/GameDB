@@ -3,13 +3,13 @@ package summerProject.demo.dtos;
 public class ItemDTO {
     private String name;
     private CharacteristicDTO properties;
-    private Integer type;
+    private int type;
     private String description;
 
     public ItemDTO() {
     }
 
-    public ItemDTO(String name, CharacteristicDTO properties, Integer type, String description) {
+    public ItemDTO(String name, CharacteristicDTO properties, int type, String description) {
         this.name = name;
         this.properties = properties;
         this.type = type;
@@ -32,11 +32,11 @@ public class ItemDTO {
         this.properties = properties;
     }
 
-    public Integer getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(int type) {
         this.type = type;
     }
 

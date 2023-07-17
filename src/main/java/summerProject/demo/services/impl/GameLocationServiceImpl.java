@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import summerProject.demo.dtos.GameLocationDTO;
 import summerProject.demo.models.GameLocation;
+import summerProject.demo.repositories.CharacterRepository;
 import summerProject.demo.repositories.GameLocationRepository;
+import summerProject.demo.repositories.QuestRepository;
 import summerProject.demo.services.GameLocationService;
 
 import java.util.List;
@@ -15,6 +17,10 @@ public class GameLocationServiceImpl implements GameLocationService<String> {
 
     @Autowired
     private GameLocationRepository gameLocationRepository;
+    @Autowired
+    private CharacterRepository characterRepository;
+    @Autowired
+    private QuestRepository questRepository;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -47,6 +53,9 @@ public class GameLocationServiceImpl implements GameLocationService<String> {
 
     @Override
     public void delete(String s) {
+//        questRepository.deleteRewardLogByLocationName(s);
+//        questRepository.deleteQuestByLocationName(s);
+//        characterRepository.deleteCharacterByLocationName(s);
         gameLocationRepository.deleteById(s);
     }
 }

@@ -10,21 +10,21 @@ public class Character {
     @Column(name = "name", length = 255, nullable = false, unique = true)
     private String name;
     @Column(name = "character_class")
-    private Integer characterClass;
+    private int characterClass;
     @Column(name = "level", nullable = false)
-    private Integer level;
+    private int level;
     @ManyToOne
     @JoinColumn
-    private GameLocation currentLocation = null;
+    private GameLocation currentLocation;
     @OneToOne
     @JoinColumn
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private Characteristic powerRate = null;
+    private Characteristic powerRate;
 
     protected Character() {
     }
 
-    public Character(String name, Integer characterClass, Integer level,
+    public Character(String name, int characterClass, int level,
                      GameLocation currentLocation, Characteristic powerRate) {
         this.name = name;
         this.characterClass = characterClass;
@@ -42,19 +42,19 @@ public class Character {
         this.name = name;
     }
 
-    public Integer getCharacterClass() {
+    public int getCharacterClass() {
         return characterClass;
     }
 
-    private void setCharacterClass(Integer characterClass) {
+    private void setCharacterClass(int characterClass) {
         this.characterClass = characterClass;
     }
 
-    public Integer getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    private void setLevel(Integer level) {
+    private void setLevel(int level) {
         this.level = level;
     }
 

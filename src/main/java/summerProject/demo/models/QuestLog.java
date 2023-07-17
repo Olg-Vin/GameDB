@@ -22,9 +22,8 @@ public class QuestLog {
     public QuestLog() {
     }
 
-    public QuestLog(Character character, Quest quest) {
-        this.character = character;
-        this.quest = quest;
+    public QuestLog(QuestLogKeys key) {
+        this.id = key;
     }
 
     public Character getCharacter() {

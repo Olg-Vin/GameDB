@@ -11,3 +11,37 @@ dtos
 controllers
     add controllers for all entity in models
 
+
+
+1) Персонаж выбран - идёт запрос на создание нового элемента в таблице character, characteristics с базовыми значениями. Локация назначается по дефолту одна.
+
+INSERT INTO character (name, level, location_id)
+VALUES ('New Character', 1, 1);
+
+INSERT INTO characteristics (character_id, health, strength, agility)
+VALUES (LAST_INSERT_ID(), 100, 10, 5);
+
+
+2) Игрок находится в меню выбора персонажа - отображается локация, в которой он находился перед выходом, также возможно прочитать описание данной локации - для этого по внешнему ключу character дергаем нужный элемент таблицы location.
+
+SELECT l.name AS location, l.description
+FROM character c
+INNER JOIN location l ON c.location_id = l.id
+WHERE c.id = {character_id};
+
+
+3) Просмотр описания заданий игроком "PNAME" -> поиск заданий в таблице questLog, вытягиваем оттуда поле content.
+
+SELECT q.content
+FROM questLog ql
+INNER JOIN quest q ON ql.quest_id = q.id
+WHERE ql.player_name = 'PNAME';
+
+
+4) Хотим посмотреть свойства предметов, которые нам достанутся по завершению задания: можем получить к ним доступ так - поиск каждого элемента награды по названию квеста в контракте rewardLog, вытаскиваем у предметов поле properties, по этому полю ищем необходимые статистику в таблице characteristic.
+
+SELECT c.property
+FROM rewardLog rl
+INNER JOIN item i ON rl.item_id = i.id
+INNER JOIN characteristics c ON i.property_id = c.id
+WHERE rl.quest_name = 'QuestName';

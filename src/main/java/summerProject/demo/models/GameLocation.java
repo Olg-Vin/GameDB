@@ -15,12 +15,12 @@ public class GameLocation {
     @Column(name = "legend", length = 512)
     private String legend;
     @Column(name = "max_npc")
-    private Integer maxNPC;
+    private int maxNPC;
 
     protected GameLocation() {
     }
 
-    public GameLocation(String name, String legend, Integer maxNPC) {
+    public GameLocation(String name, String legend, int maxNPC) {
         this.name = name;
         this.legend = legend;
         this.maxNPC = maxNPC;
@@ -42,11 +42,11 @@ public class GameLocation {
         this.legend = legend;
     }
 
-    public Integer getMaxNPC() {
+    public int getMaxNPC() {
         return maxNPC;
     }
 
-    public void setMaxNPC(Integer maxNPC) {
+    public void setMaxNPC(int maxNPC) {
         this.maxNPC = maxNPC;
     }
 
