@@ -16,4 +16,5 @@ public interface QuestService<ID> {
     void delete(ID id);
 
     void addItem(String questName, String itemName, int count);
+    List<QuestDTO> findAllQuestsByLocation(String nameLocation);
 }

@@ -14,4 +14,6 @@ public interface GameLocationService<ID> {
 
     void update(GameLocationDTO gameLocationDTO);
     void delete(ID id);
+
+    List<GameLocationDTO> findAllLocationWhere(int count);
 }

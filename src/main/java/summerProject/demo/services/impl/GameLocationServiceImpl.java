@@ -3,6 +3,7 @@ package summerProject.demo.services.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import summerProject.demo.dtos.CharacterDTO;
 import summerProject.demo.dtos.GameLocationDTO;
 import summerProject.demo.models.GameLocation;
 import summerProject.demo.repositories.CharacterRepository;
@@ -54,9 +55,12 @@ public class GameLocationServiceImpl implements GameLocationService<String> {
 
     @Override
     public void delete(String s) {
-//        questRepository.deleteRewardLogByLocationName(s);
-//        questRepository.deleteQuestByLocationName(s);
-//        characterRepository.deleteCharacterByLocationName(s);
         gameLocationRepository.deleteById(s);
+    }
+
+    @Override
+    public List<GameLocationDTO> findAllLocationWhere(int count) {
+        return gameLocationRepository.findAllLocationWhereMaxNPCLessBy(count).stream().map((element)->
+                modelMapper.map(element, GameLocationDTO.class)).toList();
     }
 }

@@ -2,6 +2,7 @@ package summerProject.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import summerProject.demo.dtos.CharacteristicDTO;
 import summerProject.demo.dtos.GameLocationDTO;
 import summerProject.demo.exceptions.ResourceNotFoundException;
 import summerProject.demo.services.GameLocationService;
@@ -34,6 +35,11 @@ public class GameLocationController {
     @DeleteMapping("/delete/{id}")
     void deleteLocation(@PathVariable String id) {
         gameLocationService.delete(id);
+    }
+
+    @PostMapping("/custom5/{count}")
+    List<GameLocationDTO> locationWhere(@PathVariable int count) {
+        return gameLocationService.findAllLocationWhere(count);
     }
 }
 

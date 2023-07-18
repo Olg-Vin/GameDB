@@ -2,6 +2,7 @@ package summerProject.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import summerProject.demo.dtos.GameLocationDTO;
 import summerProject.demo.dtos.QuestDTO;
 import summerProject.demo.exceptions.ResourceNotFoundException;
 import summerProject.demo.services.QuestService;
@@ -34,5 +35,10 @@ public class QuestController {
     @DeleteMapping("/delete/{id}")
     void deleteQuest(@PathVariable String id) {
         questService.delete(id);
+    }
+
+    @PostMapping("/custom6/{locationName}")
+    List<QuestDTO> locationWhere(@PathVariable String locationName) {
+        return questService.findAllQuestsByLocation(locationName);
     }
 }

@@ -11,4 +11,6 @@ import java.util.List;
 
 @Repository
 public interface QuestRepository extends JpaRepository<Quest, String > {
+    @Query(value = "SELECT q FROM Quest q WHERE q.questPlace.name = :locationName")
+    List<Quest> findAllQuestsByLocation(@Param("locationName") String locationName);
 }

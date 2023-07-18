@@ -3,6 +3,7 @@ package summerProject.demo.services.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import summerProject.demo.dtos.CharacteristicDTO;
 import summerProject.demo.dtos.QuestDTO;
 import summerProject.demo.models.Item;
 import summerProject.demo.models.Quest;
@@ -70,5 +71,11 @@ public class QuestServiceImpl implements QuestService<String > {
         rewardLog.setQuest(quest);
         rewardLog.setItem(item);
         rewardLogRepository.save(rewardLog);
+    }
+
+    @Override
+    public List<QuestDTO> findAllQuestsByLocation(String nameLocation) {
+        return questRepository.findAllQuestsByLocation(nameLocation).stream().map((element)->
+                modelMapper.map(element, QuestDTO.class)).toList();
     }
 }
